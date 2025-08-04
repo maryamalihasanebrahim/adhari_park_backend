@@ -18,7 +18,17 @@ const CreateBooking = async (req, res) => {
   }
 }
 
+const GetBooking = async(req, res)=> {
+  try {
+    const booking = await Booking.findById(req.params.id)
+    res.send(booking)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 module.exports = {
   CreateBooking,
-  GetBookings
+  GetBookings, 
+  GetBooking
 }
