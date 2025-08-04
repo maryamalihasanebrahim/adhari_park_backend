@@ -1,7 +1,6 @@
 const { Schema } = require('mongoose')
 const mongoose = require('mongoose')
 
-
 const bookingSchema = new Schema(
   {
     date: { type: Date, required: true },
@@ -9,11 +8,11 @@ const bookingSchema = new Schema(
       type: String,
       required: true
     },
-    persons: { type: Number },
+    persons: { type: Number, default: 1 },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     rideId: { type: mongoose.Schema.Types.ObjectId, ref: 'Ride' }
   },
   { timestamps: true }
 )
-module.exports = mongoose.model('Booking', bookingSchema)
 
+module.exports = mongoose.model('Booking', bookingSchema)
