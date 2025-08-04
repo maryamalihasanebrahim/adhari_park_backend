@@ -1,6 +1,8 @@
 const express = require('express')
 const logger = require('morgan')
 
+const authRouter = require('./routes/authRouter')
+
 const PORT = process.env.PORT || 3001
 
 const db = require('./db')
@@ -11,7 +13,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
-
+app.use('/auth', authRouter)
 
 app.use('/', (req, res) => {
   res.send(`connected!`)
