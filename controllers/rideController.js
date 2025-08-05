@@ -9,16 +9,24 @@ const GetRides = async (req, res) => {
   }
 }
 
-const CreateRide = async(req, res)=> {
+const CreateRide = async (req, res) => {
   try {
-    const ride = await Ride.create({... req.body})
+    const ride = await Ride.create({ ...req.body })
+    res.send(ride)
+  } catch (error) {}
+}
+
+const GetRide = async (req, res) => {
+  try {
+    const ride = await Ride.findById(req.params.id)
     res.send(ride)
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
 module.exports = {
-  GetRides, 
-  CreateRide, 
-  }
+  GetRides,
+  CreateRide,
+  GetRide
+}
