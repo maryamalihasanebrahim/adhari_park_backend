@@ -1,4 +1,4 @@
-const Booking = require('../models/Booking')
+const Booking = require("../models/Booking")
 
 const GetBookings = async (req, res) => {
   try {
@@ -18,7 +18,7 @@ const CreateBooking = async (req, res) => {
   }
 }
 
-const GetBooking = async(req, res)=> {
+const GetBooking = async (req, res) => {
   try {
     const booking = await Booking.findById(req.params.id)
     res.send(booking)
@@ -27,8 +27,21 @@ const GetBooking = async(req, res)=> {
   }
 }
 
+const deleteBooking = async (req, res) => {
+  try {
+    const deletedBooking = await Booking.deleteOne({ _id: req.params.id })
+
+    res
+      .status(200)
+      .send({ msg: "Booking deleted successfully", payload: deletedBooking })
+  } catch (error) {
+    throw error
+  }
+}
+
 module.exports = {
   CreateBooking,
-  GetBookings, 
-  GetBooking
+  GetBookings,
+  GetBooking,
+  deleteBooking,
 }
